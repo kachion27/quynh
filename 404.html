@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Không tìm thấy trang | Hà Thị Quỳnh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #e8e8ed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: rgba(244,114,182,0.3);
+            color: #fff;
+        }
+
+        /* Particles Canvas */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Background Grid */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(244,114,182,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(244,114,182,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 30%, transparent 100%);
+            animation: grid-drift 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes grid-drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Ambient Glow Orbs */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: 0;
+            animation: orb-float 8s ease-in-out infinite;
+        }
+
+        .glow-orb--1 {
+            width: 400px;
+            height: 400px;
+            background: #f472b6;
+            top: 10%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .glow-orb--2 {
+            width: 350px;
+            height: 350px;
+            background: #c084fc;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: -3s;
+        }
+
+        .glow-orb--3 {
+            width: 300px;
+            height: 300px;
+            background: #60a5fa;
+            top: 50%;
+            left: 60%;
+            animation-delay: -5s;
+        }
+
+        @keyframes orb-float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
+        }
+
+        /* Main Content */
+        .error-container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 40px 24px;
+            max-width: 600px;
+        }
+
+        /* Glitch 404 Number */
+        .error-code {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(7rem, 20vw, 12rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 8px;
+            position: relative;
+            background: linear-gradient(135deg, #f472b6, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: text-shimmer 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(244,114,182,0.2));
+        }
+
+        .error-code::before,
+        .error-code::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #f472b6, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+        }
+
+        .error-code::before {
+            animation: glitch-1 4s ease-in-out infinite;
+        }
+
+        .error-code::after {
+            animation: glitch-2 4s ease-in-out infinite;
+        }
+
+        @keyframes text-shimmer {
+            0%, 100% { filter: brightness(1) drop-shadow(0 0 40px rgba(244,114,182,0.2)); }
+            50% { filter: brightness(1.3) drop-shadow(0 0 60px rgba(244,114,182,0.3)); }
+        }
+
+        @keyframes glitch-1 {
+            0%, 90%, 100% { opacity: 0; transform: translate(0); }
+            92% { opacity: 0.6; transform: translate(-3px, 2px); }
+            94% { opacity: 0; transform: translate(3px, -1px); }
+            96% { opacity: 0.4; transform: translate(-2px, -2px); }
+            98% { opacity: 0; }
+        }
+
+        @keyframes glitch-2 {
+            0%, 88%, 100% { opacity: 0; transform: translate(0); }
+            90% { opacity: 0.4; transform: translate(2px, -2px); }
+            93% { opacity: 0; transform: translate(-3px, 1px); }
+            95% { opacity: 0.5; transform: translate(1px, 3px); }
+            97% { opacity: 0; }
+        }
+
+        /* Hexagon Divider */
+        .hex-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .hex-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(244,114,182,0.4), transparent);
+        }
+
+        .hex-diamond {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #f472b6, #c084fc);
+            transform: rotate(45deg);
+            box-shadow: 0 0 12px rgba(244,114,182,0.4);
+        }
+
+        /* Error Text */
+        .error-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            font-weight: 600;
+            color: #e8e8ed;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .error-desc {
+            font-size: 1rem;
+            color: #9898a6;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .error-desc span {
+            color: #f472b6;
+        }
+
+        /* Buttons */
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn--primary {
+            background: linear-gradient(135deg, #f472b6, #c084fc, #60a5fa);
+            color: #0a0a0f;
+            box-shadow: 0 4px 20px rgba(244,114,182,0.3);
+        }
+
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(244,114,182,0.45);
+        }
+
+        .btn--primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn--primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn--ghost {
+            background: transparent;
+            color: #e8e8ed;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn--ghost:hover {
+            border-color: rgba(244,114,182,0.3);
+            background: rgba(244,114,182,0.05);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(244,114,182,0.1);
+        }
+
+        .btn-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: translateX(4px);
+        }
+
+        .btn:hover .btn-icon--back {
+            transform: translateX(-4px);
+        }
+
+        /* Floating Icons */
+        .floating-icons {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .float-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.08;
+            animation: float-around 15s ease-in-out infinite;
+        }
+
+        .float-icon:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; animation-duration: 18s; }
+        .float-icon:nth-child(2) { top: 25%; right: 15%; animation-delay: -3s; animation-duration: 14s; }
+        .float-icon:nth-child(3) { bottom: 30%; left: 20%; animation-delay: -6s; animation-duration: 20s; }
+        .float-icon:nth-child(4) { bottom: 15%; right: 25%; animation-delay: -9s; animation-duration: 16s; }
+        .float-icon:nth-child(5) { top: 60%; left: 5%; animation-delay: -4s; animation-duration: 22s; }
+        .float-icon:nth-child(6) { top: 10%; right: 30%; animation-delay: -7s; animation-duration: 17s; }
+
+        @keyframes float-around {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -30px) rotate(10deg); }
+            50% { transform: translate(-15px, 20px) rotate(-5deg); }
+            75% { transform: translate(25px, 10px) rotate(8deg); }
+        }
+
+        /* Countdown hint */
+        .redirect-hint {
+            margin-top: 32px;
+            font-size: 0.8rem;
+            color: #5a5a6e;
+            letter-spacing: 1px;
+        }
+
+        .redirect-hint span {
+            color: #f472b6;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .error-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+
+            .glow-orb { opacity: 0.08; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="glow-orb glow-orb--1" aria-hidden="true"></div>
+    <div class="glow-orb glow-orb--2" aria-hidden="true"></div>
+    <div class="glow-orb glow-orb--3" aria-hidden="true"></div>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- Floating Icons -->
+    <div class="floating-icons" aria-hidden="true">
+        <span class="float-icon">💼</span>
+        <span class="float-icon">📊</span>
+        <span class="float-icon">🎯</span>
+        <span class="float-icon">💡</span>
+        <span class="float-icon">📈</span>
+        <span class="float-icon">🌟</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="error-container">
+        <div class="error-code">404</div>
+        
+        <div class="hex-divider">
+            <div class="hex-line"></div>
+            <div class="hex-diamond"></div>
+            <div class="hex-line"></div>
+        </div>
+
+        <h1 class="error-title">Trang không tồn tại</h1>
+        <p class="error-desc">
+            Xin lỗi, trang bạn đang tìm kiếm có vẻ đã <span>biến mất</span> 
+            hoặc chưa bao giờ tồn tại. Hãy quay lại trang chủ nhé!
+        </p>
+
+        <div class="error-actions">
+            <a href="/" class="btn btn--primary">
+                <span class="btn-icon btn-icon--back">←</span>
+                <span>Về Trang Chủ</span>
+            </a>
+            <a href="/#contact" class="btn btn--ghost">
+                <span>Liên Hệ</span>
+                <span class="btn-icon">→</span>
+            </a>
+        </div>
+
+        <p class="redirect-hint">
+            Tự động chuyển hướng sau <span id="countdown">10</span> giây...
+        </p>
+    </div>
+
+    <script>
+        // ====== Particles ======
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticles() {
+            const count = Math.min(50, Math.floor(window.innerWidth / 20));
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 0.5,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.4 + 0.1,
+                    color: ['rgba(244,114,182,', 'rgba(192,132,252,', 'rgba(96,165,250,'][Math.floor(Math.random() * 3)]
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, i) => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.y > canvas.height) p.y = 0;
+                if (p.y < 0) p.y = canvas.height;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = p.color + p.opacity + ')';
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(244,114,182,${(1 - dist / 120) * 0.06})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        resize();
+        createParticles();
+        animate();
+        window.addEventListener('resize', () => { resize(); createParticles(); });
+
+        // ====== Countdown Redirect ======
+        let seconds = 10;
+        const countdownEl = document.getElementById('countdown');
+        const timer = setInterval(() => {
+            seconds--;
+            countdownEl.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(timer);
+                window.location.href = '/';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
